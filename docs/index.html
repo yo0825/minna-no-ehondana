@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fffcef">
+<meta name="description" content="こどももおとなも、好きなときにひらける、小さなWeb絵本の本棚。">
+<title>こどもとおとなの絵本棚</title>
+<style>
+:root{color-scheme:light;--paper:#fff2dc;--muted:#d1c2ad;--gold:#f1c486;--night:#171d2b}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 46% 12%,#343344 0%,var(--night) 65%);color:var(--paper);font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif CJK JP",serif;min-height:100svh}
+main{max-width:1200px;margin:auto;padding:0 clamp(18px,5vw,70px) 30px}
+header,nav{display:flex;align-items:center;justify-content:space-between}
+header{min-height:76px;border-bottom:1px solid #f1c48640;margin-bottom:24px}
+.brand{font-size:1rem;letter-spacing:.12em}
+.moon{color:var(--gold);font-size:1.35rem;margin-right:.6rem}
+button{font:inherit;cursor:pointer;color:inherit;border:1px solid #f1c48664;background:transparent;border-radius:100px;padding:.65em 1.3em;min-height:44px}
+button:hover{background:#f1c48622}
+button:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+button:disabled{opacity:.45;cursor:default}
+[hidden]{display:none!important}
+#spread{display:grid;overflow:hidden;grid-template-columns:1.55fr 1fr;min-height:490px;border:1px solid #f1c48645;border-radius:5px;box-shadow:0 22px 56px #0b0d1688;background:#222331}
+.picture{display:block;width:100%;height:100%;min-height:100%;object-fit:cover;background:#252638}
+.copy{background:linear-gradient(155deg,#272635,#212331 80%);display:flex;flex-direction:column;justify-content:center;padding:clamp(22px,3.6vw,52px)}
+.ornament{color:var(--gold);letter-spacing:.45em;font-size:1rem;margin-bottom:1.25rem}
+h1,h2{font-weight:500;line-height:1.42;margin:0;letter-spacing:.05em;text-wrap:balance}
+h1{font-size:clamp(2.1rem,4.1vw,3.65rem)}
+h2{font-size:clamp(1.55rem,2.8vw,2.4rem)}
+p{font-size:1.06rem;line-height:2.1;margin:1.15em 0 0;white-space:pre-line;overflow-wrap:anywhere}
+.cover p{color:var(--muted)}
+.cta{align-self:flex-start;margin-top:1.75rem;color:#261e1a;background:var(--gold);border-color:var(--gold)}
+.cta:hover{background:#ffdbab}
+nav{flex-wrap:wrap;gap:8px;margin-top:20px}
+output{color:var(--muted);font-variant-numeric:tabular-nums}
+.enter{animation:appear .34s ease-out both}
+@keyframes appear{from{opacity:.5;transform:translateY(3px)}to{opacity:1;transform:none}}
+@media(max-width:720px){header{min-height:60px;margin-bottom:16px}#spread{min-height:0;grid-template-columns:1fr}.picture{aspect-ratio:1.55;min-height:0;height:auto}.copy{padding:25px 22px 30px}.ornament{margin-bottom:.65rem}p{line-height:1.9}.brand{letter-spacing:.04em}nav{margin-top:14px}}
+@media(prefers-reduced-motion:reduce){.enter{animation:none}}
+
+body{background:#faf6eb;color:#41362f}
+header{border-color:#cdbda6}.moon{color:#8c653f}
+#shelf{margin:32px 0 22px}#shelf h2{font-size:1.55rem}
+#spread{background:#fff9f1;border-color:#d8c5a8;box-shadow:0 9px 23px #7053391a}
+.copy{background:#fff9f1}.cover p,output{color:#6f6054}.ornament{color:#976e3b}
+button{border-color:#b8a388}.cta,.cta:hover{background:#735037;color:white}
+.art{position:relative;overflow:hidden;min-width:0}.picture{position:absolute;inset:0}
+.cover .art{margin:20px;border-radius:2px;box-shadow:4px 4px 0 #d4c6b3}
+
+.art{isolation:isolate}
+.effect{position:absolute;inset:0;pointer-events:none}
+.effect i{position:absolute;display:none}
+.motion .enter{transform-origin:left center;animation:turn .85s ease-out both}
+@keyframes turn{from{opacity:.5;transform:perspective(800px) rotateY(-19deg) translateX(4%)}to{opacity:1;transform:none}}
+
+[data-page="3"] i{display:block;left:78.5%;top:10.5%;width:1%;aspect-ratio:1;background:#fff3c7;clip-path:polygon(50% 0,62% 37%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 37%)}
+[data-page="3"] i:nth-child(2){left:83.5%;top:3.3%}
+[data-page="3"] i:nth-child(3){left:92.5%;top:7.8%}
+.motion [data-page="3"] i{animation:twinkle 2.5s ease-in-out infinite alternate}
+[data-page="0"] .effect{background:radial-gradient(ellipse 6% 10% at 25% 29%,#ffc469aa,transparent),radial-gradient(ellipse 3% 6% at 87% 43%,#ffd184aa,transparent)}
+.motion [data-page="0"] .effect{animation:lamp 3s ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.12;transform:scale(.55)}to{opacity:1;transform:scale(1.2)}}
+[data-page="1"] .effect{background:radial-gradient(ellipse 12% 12% at 82.5% 24%,#ffe1a2cc,transparent);mix-blend-mode:screen}
+.motion [data-page="1"] .effect{animation:lamp 2.4s ease-in-out infinite alternate}
+@keyframes lamp{from{opacity:.18}to{opacity:.87}}
+[data-page="2"] i{display:block;left:63%;bottom:65%;width:4%;height:19%;border-left:4px solid #fff4df;border-radius:65%;filter:blur(1.5px);opacity:.6}
+[data-page="2"] i:nth-child(2){left:68%}[data-page="2"] i:nth-child(3){left:70%}
+.motion [data-page="2"] i{animation:rise 2.7s ease-out infinite}
+@keyframes rise{0%{opacity:0;transform:translateY(3px) scale(.7)}25%{opacity:.9}100%{opacity:0;transform:translate(5px,-12px) scale(1.18)}}
+.motion .effect i:nth-child(2){animation-delay:-.9s}.motion .effect i:nth-child(3){animation-delay:-1.8s}
+body:not(.motion) .enter{animation:none}
+#motion{margin-top:12px;font-size:.86rem}
+@media(max-width:720px){.art{aspect-ratio:1.55}.picture{height:100%}.cover .art{margin:14px 14px 0}#shelf{margin:18px 0 12px}}
+
+
+#spread{min-height:0;align-items:center;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}
+.art,.cover .art{aspect-ratio:auto;align-self:center}
+.picture{position:static;display:block;width:100%;height:auto;min-height:0;aspect-ratio:auto;object-fit:contain}
+.copy{padding:clamp(22px,3vw,40px)}
+@media(max-width:720px){#spread{grid-template-columns:1fr}.copy{padding:20px 22px 24px}.ornament{display:none}p{margin-top:.7rem;line-height:1.85}}
+
+body{background:#fcfaf5}
+#shelf{text-align:center;margin:clamp(35px,6vw,76px) auto clamp(24px,4vw,50px)}
+#shelf h2{font-size:clamp(1.65rem,4vw,3rem);letter-spacing:.09em;color:#354d40}
+#shelf p{font-size:1rem;line-height:1.9;color:#635f53}
+#spread.cover{max-width:940px;margin:auto;background:#f1f2e7;border:0;border-radius:32px 5px 32px 5px;padding:clamp(20px,4vw,52px);box-shadow:none;gap:clamp(18px,4vw,56px);grid-template-columns:1.25fr 1fr}
+.cover .art{margin:0;border-radius:3px 7px 7px 3px;box-shadow:3px 3px #e9dfcc,5px 5px #c9bfaa,0 12px 23px #3835242b;transform:rotate(-2deg)}
+.cover .copy{background:transparent;padding:0}
+.cover .ornament{display:none}
+.cover .cta{background:#3d5949;color:white;border-color:#3d5949}
+.cover h1{font-size:clamp(1.8rem,3.4vw,3rem)}
+@media(max-width:720px){#spread.cover{grid-template-columns:1fr;gap:22px}.cover .art{max-width:390px;width:92%;justify-self:center}.cover .copy{padding:0 5px 5px}.cover h1 br{display:none}}
+#spread:not(.cover) #story{line-break:strict;overflow-wrap:normal;text-wrap:balance}
+
+body{background:#fffcef}
+body header{border-color:#d7b477;color:#714927}
+body .moon{color:#a47429}
+#shelf h2{color:#825920}
+#spread.cover{background:#fff1de;border:1px solid #dfbf85}
+.cover .cta{background:#835d27;color:#fffaf1;border-color:#835d27}
+.cover .cta:hover{background:#69471d}
+.cover .art{box-shadow:3px 3px #f9ecd0,5px 5px #caa86e,0 12px 23px #71472229}
+
+#spread:not(.cover){background:#fff1de;border:1px solid #dfbf85;border-radius:18px 5px 18px 5px}
+#spread:not(.cover) .copy{background:#fff9f1;align-self:stretch}
+#sceneTitle{color:#795421}
+#storyArea{display:grid;min-width:0}
+#storyArea p{grid-area:1/1;line-break:strict;overflow-wrap:normal;text-wrap:balance}
+.storyMeasure{visibility:hidden;pointer-events:none}
+.cover .storyMeasure{display:none}
+#home,#motion,#back{background:#fff9f1;color:#704c25;border-color:#c89e60}
+#next{background:#835d27;color:#fffaf1;border-color:#835d27}
+#next:hover{background:#69471d}
+button:focus-visible{outline-color:#895c1d}
+#progress{color:#725735}
+@media(max-width:400px){#navigation button{padding-inline:.8em}}
+
+#spread:not(.cover){background:#fff}
+#spread:not(.cover) .art{background:#fff}
+body:has(#spread:not(.cover)),#spread:not(.cover) .copy,#spread:not(.cover) .picture{background:#fff}
+body:has(#spread:not(.cover)) :is(#motion,#home,#back){background:#fff}
+
+#secret{position:absolute;left:43%;top:18%;width:20%;height:50%;border:0;background:transparent;z-index:2}
+#whisper{position:absolute;left:4%;bottom:4%;background:#fffaf0;color:#543d27;padding:.6rem;border-radius:.5rem;z-index:3}
+#counts{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin:1.5rem auto;color:#70552d;font-size:.9rem}
+#counts button[aria-pressed=true]{background:#fce7bc;border-color:#956e2f}
+</style>
+</head>
+<body>
+<main>
+<header><span class="brand"><span class="moon" aria-hidden="true">✧</span>こどもとおとなの絵本棚</span><button type="button" id="home" hidden>本棚へ</button></header>
+<section id="shelf"><h2>こどもとおとなの絵本棚</h2><p>こどももおとなも、好きなときにひらける、小さなWeb絵本の本棚。</p></section>
+<article id="spread" class="cover">
+<div class="art"><img class="picture" id="picture" src="books/kuroneko-kissa/cover.webp" alt="夜の路地に、灯りのともった喫茶店と小さな黒猫">
+<button id="secret" aria-label="黒猫の店主にごあいさつ" hidden></button><small id="whisper" hidden>店主からのおかわりです。どうぞ、ごゆっくり。</small><span class="effect" aria-hidden="true"><i></i><i></i><i></i></span></div>
+<div class="copy">
+<div class="ornament" aria-hidden="true">✧</div>
+<h1 id="coverTitle">黒猫喫茶、<br>夜の灯り</h1>
+<h2 id="sceneTitle" tabindex="-1" hidden></h2>
+<div id="storyArea"><p id="story">仕事帰り、見慣れた夜道で。<br>今夜は小さな喫茶店の灯りを見つけました。</p></div>
+<button type="button" class="cta" id="start">絵本をひらく</button>
+</div>
+</article>
+<button id="motion" hidden></button><nav aria-label="ページをめくる" id="navigation" hidden>
+<button type="button" id="back">前のページ</button>
+<output id="progress" aria-live="polite"></output>
+<button type="button" id="next">次のページ</button>
+</nav>
+<aside id="counts" aria-label="本棚の記録" hidden><span>アクセス <b id="visits">—</b></span> <button id="likes" disabled>♡ いいね</button> <button id="marks" disabled>しおり</button><small id="notice" role="status"></small></aside>
+</main>
+<script type="module" src="./reader.js"></script>
+<script type="module" src="./counts.js"></script>
+</body>
+</html>

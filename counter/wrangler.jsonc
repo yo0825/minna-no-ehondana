@@ -1,0 +1,8 @@
+{
+  "name":"ehon-counter",
+  "main":"worker.js",
+  "compatibility_date":"2025-04-01",
+  "vars":{"SITE_ORIGIN":"https://YOUR-NAME.github.io"},
+  "durable_objects":{"bindings":[{"name":"BOOK","class_name":"BookCounter"}]},
+  "migrations":[{"tag":"v1","new_sqlite_classes":["BookCounter"]}]
+}
