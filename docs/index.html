@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#fffcef">
-<meta name="description" content="こどももおとなも、好きなときにひらける、小さなWeb絵本の本棚。">
+<meta name="description" content="仕事帰り、路地で出会った黒猫の喫茶店。夜にひらく短いWeb絵本。">
 <title>こどもとおとなの絵本棚</title>
 <style>
 :root{color-scheme:light;--paper:#fff2dc;--muted:#d1c2ad;--gold:#f1c486;--night:#171d2b}
@@ -40,7 +40,7 @@ output{color:var(--muted);font-variant-numeric:tabular-nums}
 
 body{background:#faf6eb;color:#41362f}
 header{border-color:#cdbda6}.moon{color:#8c653f}
-#shelf{margin:32px 0 22px}#shelf h1{font-size:1.55rem}
+#shelf{margin:32px 0 22px}#shelf h2{font-size:1.55rem}
 #spread{background:#fff9f1;border-color:#d8c5a8;box-shadow:0 9px 23px #7053391a}
 .copy{background:#fff9f1}.cover p,output{color:#6f6054}.ornament{color:#976e3b}
 button{border-color:#b8a388}.cta,.cta:hover{background:#735037;color:white}
@@ -50,8 +50,8 @@ button{border-color:#b8a388}.cta,.cta:hover{background:#735037;color:white}
 .art{isolation:isolate}
 .effect{position:absolute;inset:0;pointer-events:none}
 .effect i{position:absolute;display:none}
-.motion #spread:not(.cover).enter{transform-origin:left center;animation:turn .85s ease-out both}
-@keyframes turn{from{opacity:.5;transform:perspective(800px) rotateY(-14deg)}to{opacity:1;transform:none}}
+.motion .enter{transform-origin:left center;animation:turn .85s ease-out both}
+@keyframes turn{from{opacity:.5;transform:perspective(800px) rotateY(-19deg) translateX(4%)}to{opacity:1;transform:none}}
 
 [data-page="3"] i{display:block;left:78.5%;top:10.5%;width:1%;aspect-ratio:1;background:#fff3c7;clip-path:polygon(50% 0,62% 37%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 37%)}
 [data-page="3"] i:nth-child(2){left:83.5%;top:3.3%}
@@ -81,7 +81,7 @@ body:not(.motion) .enter{animation:none}
 
 body{background:#fcfaf5}
 #shelf{text-align:center;margin:clamp(35px,6vw,76px) auto clamp(24px,4vw,50px)}
-#shelf h1{font-size:clamp(1.65rem,4vw,3rem);letter-spacing:.09em;color:#354d40}
+#shelf h2{font-size:clamp(1.65rem,4vw,3rem);letter-spacing:.09em;color:#354d40}
 #shelf p{font-size:1rem;line-height:1.9;color:#635f53}
 #spread.cover{max-width:940px;margin:auto;background:#f1f2e7;border:0;border-radius:32px 5px 32px 5px;padding:clamp(20px,4vw,52px);box-shadow:none;gap:clamp(18px,4vw,56px);grid-template-columns:1.25fr 1fr}
 .cover .art{margin:0;border-radius:3px 7px 7px 3px;box-shadow:3px 3px #e9dfcc,5px 5px #c9bfaa,0 12px 23px #3835242b;transform:rotate(-2deg)}
@@ -95,7 +95,7 @@ body{background:#fcfaf5}
 body{background:#fffcef}
 body header{border-color:#d7b477;color:#714927}
 body .moon{color:#a47429}
-#shelf h1{color:#825920}
+#shelf h2{color:#825920}
 #spread.cover{background:#fff1de;border:1px solid #dfbf85}
 .cover .cta{background:#835d27;color:#fffaf1;border-color:#835d27}
 .cover .cta:hover{background:#69471d}
@@ -117,77 +117,28 @@ button:focus-visible{outline-color:#895c1d}
 
 #spread:not(.cover){background:#fff}
 #spread:not(.cover) .art{background:#fff}
-body:has(#spread:not([hidden])),#spread:not(.cover) .copy,#spread:not(.cover) .picture{background:#fff}
-body:has(#spread:not([hidden])) :is(#motion,#home,#back){background:#fff}
-
-#counts{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin:1.5rem auto;color:#70552d;font-size:.9rem}
-#counts button[aria-pressed=true]{background:#fce7bc;border-color:#956e2f}
+body:has(#spread:not(.cover)),#spread:not(.cover) .copy,#spread:not(.cover) .picture{background:#fff}
+body:has(#spread:not(.cover)) :is(#motion,#home,#back){background:#fff}
 
 #secret{position:absolute;left:43%;top:18%;width:20%;height:50%;border:0;background:transparent;z-index:2}
-.whisper-region{position:absolute;inset:0;pointer-events:none;z-index:3}
-#whisper{position:absolute;bottom:7%;left:54%;transform:translateX(-50%);width:max-content;max-width:82%;padding:.55rem .9rem;background:#fffaf0;color:#543d27;border-radius:15px;box-shadow:0 3px 14px #20130c40}
-#whisper::before{content:"";position:absolute;bottom:100%;left:45%;border:8px solid transparent;border-top:0;border-bottom:10px solid #fffaf0}
-#whisper span{display:block;font-size:.75rem;color:#795421}
-#whisper p{margin:.15rem 0 0;font-size:clamp(.85rem,2.8vw,1rem);line-height:1.4}
-.motion #whisper:not([hidden]){animation:whisper-in .24s ease-out both}
-@keyframes whisper-in{from{opacity:0;transform:translate(-50%,4px)}to{opacity:1;transform:translateX(-50%)}}
-
-#bookList{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));text-align:left;gap:clamp(14px,3vw,28px);max-width:1020px;margin:2rem auto 0}
-.book-card{overflow:hidden;border:1px solid #dec699;border-radius:12px;background:#fffaf0;box-shadow:0 5px 12px #854f1910}
-.book-card button{display:block;border:0;border-radius:0;padding:0;background:none;width:100%;text-align:left}
-.book-card button:hover{background:#fff0d3}
-.book-card button:focus-visible{outline-offset:-4px}
-.book-cover{display:block;width:100%;aspect-ratio:1;object-fit:cover}
-.book-label{display:block;padding:.9rem 1rem .65rem;color:#694514;font-size:clamp(1rem,1.8vw,1.3rem);line-height:1.45}
-#shelf .book-intro{padding:0 1rem 1rem;margin:0;font-size:.9rem}
-
-#spread:not([data-book="kuroneko-kissa"]) .effect i{display:none}
-[data-book="pancake"] .effect,[data-book="forest-picnic"] .effect{background:none;animation:none;mix-blend-mode:screen}
-[data-book="forest-picnic"][data-page="3"] .effect{background:radial-gradient(ellipse 32% 18% at 56% 68%,#ffefb263,transparent)}
-.motion [data-book="forest-picnic"][data-page="3"] .effect{animation:lamp 3s ease-in-out infinite alternate}
-
-#secret:hover{background:transparent}
-#readingBook{color:#795421;font-size:.875rem;margin:0 0 .7rem}
-@media(max-width:650px){#bookList{grid-template-columns:minmax(0,360px);justify-content:center}}
-
-/* Positions use the visible illustration as their coordinate space. */
-.motion [data-book="pancake"] .effect::before{content:"";position:absolute;pointer-events:none;opacity:0}
-.motion [data-book="pancake"][data-page="0"] .effect::before{
-  left:42%;top:66%;width:13%;height:5%;border:1px solid #fff1bd;border-left-color:transparent;border-top-color:transparent;
-  border-radius:50%;animation:batter-ripple 2.6s ease-out 2;
-}
-.motion [data-book="pancake"][data-page="1"] .effect::before{
-  left:54%;top:52%;width:3%;height:10%;border:2px solid #fff6dd;border-top:0;border-right:0;
-  border-radius:50%;filter:blur(1.5px);animation:pancake-steam 3.2s ease-out 2;
-}
-.motion [data-book="pancake"][data-page="2"] .effect::before{
-  left:33%;top:55%;width:1.1%;height:2.2%;border-radius:50%;background:#fff0aa;box-shadow:0 0 7px #ffdc78;
-  animation:honey-drop 2.8s ease-in 2;
-}
-.motion [data-book="pancake"][data-page="3"] .effect::before{
-  inset:0;background:radial-gradient(ellipse 33% 35% at 82% 12%,#fff4c76a,transparent);
-  animation:morning-light 3.4s ease-in-out 1;
-}
-@keyframes batter-ripple{0%,100%{opacity:0;transform:scale(.8)}35%{opacity:.86}85%{transform:scale(1.24)}}
-@keyframes pancake-steam{0%,100%{opacity:0}34%{opacity:.78}90%{transform:translateY(-90%) rotate(10deg)}}
-@keyframes honey-drop{0%,21%,70%,100%{opacity:0}32%{opacity:1}64%{opacity:.84;transform:translate(30%,450%)}}
-@keyframes morning-light{0%,100%{opacity:0}48%{opacity:.85}}
+#whisper{position:absolute;left:4%;bottom:4%;background:#fffaf0;color:#543d27;padding:.6rem;border-radius:.5rem;z-index:3}
+#counts{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin:1.5rem auto;color:#70552d;font-size:.9rem}
+#counts button[aria-pressed=true]{background:#fce7bc;border-color:#956e2f}
 </style>
 </head>
 <body>
 <main>
 <header><span class="brand"><span class="moon" aria-hidden="true">✧</span>こどもとおとなの絵本棚</span><button type="button" id="home" hidden>本棚へ</button></header>
-<section id="shelf"><h1>こどもとおとなの絵本棚</h1><p>こどももおとなも、好きなときにひらける、小さなWeb絵本の本棚。</p><div id="bookList"></div></section>
-<article id="spread" hidden>
+<section id="shelf"><h2>こどもとおとなの絵本棚</h2><p>寝る前に、だれかと。仕事帰りに、ひとりで。<br>ここでは、絵本を一冊ずつ開いて読めます。</p></section>
+<article id="spread" class="cover">
 <div class="art"><img class="picture" id="picture" src="books/kuroneko-kissa/cover.webp" alt="夜の路地に、灯りのともった喫茶店と小さな黒猫">
-<button type="button" id="secret" aria-label="黒猫の店主にごあいさつ" aria-controls="whisper" aria-expanded="false" hidden></button>
-<div class="whisper-region" role="status"><div id="whisper" hidden><span>黒猫の店主</span><p>「ココア、もう一杯いかが？」</p></div></div>
-<span class="effect" aria-hidden="true"><i></i><i></i><i></i></span></div>
+<button id="secret" aria-label="黒猫の店主にごあいさつ" hidden></button><small id="whisper" hidden>店主からのおかわりです。どうぞ、ごゆっくり。</small><span class="effect" aria-hidden="true"><i></i><i></i><i></i></span></div>
 <div class="copy">
 <div class="ornament" aria-hidden="true">✧</div>
-<p id="readingBook"></p>
+<h1 id="coverTitle">黒猫喫茶、<br>夜の灯り</h1>
 <h2 id="sceneTitle" tabindex="-1" hidden></h2>
-<div id="storyArea"><p id="story"></p></div>
+<div id="storyArea"><p id="story">仕事帰り、見慣れた夜道で。<br>今夜は小さな喫茶店の灯りを見つけました。</p></div>
+<button type="button" class="cta" id="start">絵本をひらく</button>
 </div>
 </article>
 <button id="motion" hidden></button><nav aria-label="ページをめくる" id="navigation" hidden>
@@ -196,9 +147,8 @@ body:has(#spread:not([hidden])) :is(#motion,#home,#back){background:#fff}
 <button type="button" id="next">次のページ</button>
 </nav>
 <aside id="counts" aria-label="本棚の記録" hidden><span>アクセス <b id="visits">—</b></span> <button id="likes" disabled>♡ いいね</button> <button id="marks" disabled>しおり</button><small id="notice" role="status"></small></aside>
-<noscript>絵本を読むにはJavaScriptを有効にしてください。</noscript>
 </main>
-<script type="module" src="./reader.js?v=pancake-rhythm"></script>
+<script type="module" src="./reader.js"></script>
 <script type="module" src="./counts.js"></script>
 </body>
 </html>
